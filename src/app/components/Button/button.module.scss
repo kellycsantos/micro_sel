@@ -1,0 +1,39 @@
+@use '../../_variables-colors' as *;
+
+.button {
+    border-radius: 8px;
+    width: 315px;
+    height: 42px;
+    border: none;
+    font-size: 17px;
+    transition: linear .3s;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(.96);
+        opacity: 1;
+        cursor: pointer;
+
+        &:is(:disabled) {
+            cursor: initial;
+            transform: scale(1);
+        }
+    }
+
+    &:disabled{
+        opacity: .75;
+    }
+
+    &.primary {
+        background: $primary;
+        color: $white;
+    }
+
+    &.ghost {
+        background: $gray-700;
+
+    }
+
+
+
+}
