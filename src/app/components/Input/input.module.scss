@@ -1,0 +1,39 @@
+@use '../../_variables-colors' as *;
+
+.label {
+    p {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    svg {
+        margin-left: 8px;
+    }
+    &:focus-within{
+        svg{
+
+            color: $primary;
+        }
+    }
+
+    .input {
+        height: 42px;
+        padding: 15px 25px;
+        border-radius: 8px;
+        border: 1px solid $gray-700;
+        background: $gray-500;
+        color: $black;
+        font-weight: 600;
+        letter-spacing: 2px;
+
+        &::placeholder {
+            font-weight: normal;
+        }
+
+        &:focus {
+            border: 1px solid $primary;
+            background: $orange-200;
+        }
+    }
+}
