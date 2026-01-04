@@ -1,7 +1,6 @@
 @use '../../_variables-colors' as *;
 
 .resume_container {
-    margin: 25px;
     background: rgba($gray-300, .8);
     max-width: 415px;
     width: 90dvw;
@@ -74,5 +73,11 @@
 
             }
         }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .resume_container{
+        width: 100%;
     }
 }
