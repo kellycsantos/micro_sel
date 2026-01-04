@@ -1,0 +1,20 @@
+@use '../../_variables-colors' as *;
+
+.container{
+    background: rgba($white,.85);
+    backdrop-filter: blur(5px);
+    display: grid;
+
+    &.step1{
+        grid-template-areas: "title title" "form resume"  ;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .container{
+          &.step1{
+        grid-template-areas: "title" "form" "resume"  ;
+    }
+
+    }    
+}
