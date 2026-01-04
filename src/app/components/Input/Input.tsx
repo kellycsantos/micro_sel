@@ -16,7 +16,11 @@ export const Input = ({ label, mask, replacement, onChange, tooltip, ...rest }: 
 
         <label className={styles.label}>
             <p> {label} {tooltip && <Tooltip content={tooltip} />}</p>
-            <InputMask {...rest} mask={mask} replacement={replacement} separate onChange={onChange} className={styles.input} />
+         {
+            mask ? 
+            <InputMask {...rest} mask={mask} replacement={replacement} separate onChange={onChange} className={styles.input} /> :
+            <input {...rest} className={styles.input}/>
+         }
         </label>
 
     )
