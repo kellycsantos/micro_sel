@@ -13,12 +13,13 @@ export type ListItems = {
 
 export type ResumeProps = {
     listItems: ListItems,
+    gridarea?: string
 }
 
-export const ResumeContainer = ({ listItems }: ResumeProps) => {
+export const ResumeContainer = ({ listItems, gridarea }: ResumeProps) => {
     const use = useResume({ listItems })
     return (
-        <div className={styles.resume_container}>
+        <div className={styles.resume_container} style={{ gridArea: gridarea }} >
             <h2>Ödeme Özeti</h2>
             <div className={styles.resume_list}>
                 <ul>
