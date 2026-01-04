@@ -1,0 +1,38 @@
+@use '../../_variables-colors' as *;
+
+.tooltip_container {
+    position: relative;
+    display: inline-flex;
+
+    .tooltip {
+        color: $gray-text;
+        cursor: pointer;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+    }
+
+    &:hover {
+        .tooltip_content {
+            display: block;
+        }
+    }
+
+    .tooltip_content {
+        display: none;
+        background: $white;
+        position: absolute;
+        top: -16px;
+        left: 28px;
+        font-size: .5rem;
+        padding: 8px;
+        width: max-content !important;
+        max-width: 150px !important;
+        border-radius: 8px;
+        box-shadow: 1px 1px 2px 1px rgba($black, .1);
+    }
+
+
+}

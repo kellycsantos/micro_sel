@@ -1,0 +1,83 @@
+@use '../../_variables-colors' as *;
+
+.resume_container {
+    background: rgba($gray-300, .8);
+    max-width: 415px;
+    width: 90dvw;
+    height: 65dvh;
+    max-height: 730px;
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(8px);
+    display: grid;
+    grid-template-areas: 'title' 'list-items' 'footer';
+    grid-template-rows: 50px 3fr 1fr;
+
+
+    h2 {
+        grid-area: title;
+    }
+
+    .resume_list {
+        background: $gray-300;
+        border-radius: 16px;
+        padding: 16px;
+        grid-area: list-items;
+        height: max-content;
+
+        ul li {
+            display: flex;
+            justify-content: space-between;
+
+
+            p {
+                color: $gray-text;
+
+                &:not(:first-child) {
+                    color: $black;
+                    font-weight: 500;
+                }
+            }
+
+        }
+
+    }
+    .total_container {
+        border-top: 1px dashed $gray-text;
+        grid-area: footer;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+        .total {
+
+            p {
+                color: $gray-text;
+            }
+
+            p:not(:first-child) {
+                color: $black-text;
+                font-size: 1.8rem;
+                font-weight: 600;
+            }
+        }
+
+        span {
+            svg {
+                height: 100%;
+                stroke-width: 1px;
+                color: $white;
+                fill: $gray-400;
+
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .resume_container{
+        width: 100%;
+    }
+}
