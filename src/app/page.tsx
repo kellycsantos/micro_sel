@@ -1,23 +1,30 @@
 'use client'
-import { useUser } from "@/app/stores/store";
 
+import { ResumeContainer } from "./components/ResumeContainer/ResumeContainer";
+import styles from './page.module.scss'
+import { Container } from "./components/Container/Container";
 export default function Home() {
 
-const {user, age} = useUser((state) => state)
 
-  function addNewUser(name : string){
-   useUser.getState().addUser(name)
-  }
+
+  const mockData = {
+    idFatura: 5144794,
+    value: 158.23,
+    discount: 0.25,
+    resume: 129.74
+
+}
+
+
 
   return (
     <div>
-      <main>
-        MicroSEL
-        <p>Ödeme başariyla gerçekleşti.
-          Teşekkür Ederiz</p>
-        
-          Name : {user}, {age}
-          <button onClick={() => addNewUser('Kelly')}>Add user</button>
+      <main className={styles.main}>
+        <Container classname="step1">
+        <h2 style={{gridArea: "title"}}>Micro</h2>
+        <ResumeContainer listItems={mockData} gridarea="form" />
+        <ResumeContainer listItems={mockData} gridarea="resume"/>
+        </Container>
       </main>
     </div>
   );
