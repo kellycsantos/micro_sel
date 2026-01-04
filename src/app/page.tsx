@@ -3,6 +3,7 @@
 import { ResumeContainer } from "./components/ResumeContainer/ResumeContainer";
 import styles from './page.module.scss'
 import { Container } from "./components/Container/Container";
+import { FormContainer } from "./components/FormContainer/FormContainer";
 export default function Home() {
 
 
@@ -22,7 +23,7 @@ export default function Home() {
       <main className={styles.main}>
         <Container classname="step1">
         <h2 style={{gridArea: "title"}}>Micro</h2>
-        <ResumeContainer listItems={mockData} gridarea="form" />
+        <FormContainer gridarea="form" />
         <ResumeContainer listItems={mockData} gridarea="resume"/>
         </Container>
       </main>
