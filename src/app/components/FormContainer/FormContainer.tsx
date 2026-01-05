@@ -3,10 +3,12 @@ import styles from './form_container.module.scss'
 import { Input } from '../Input/Input'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { Button } from '../Button'
 
 import { CreditCard } from 'lucide-react'
+import { useInvoice } from '@/app/stores/store'
 
 
 export type ResumeProps = {
@@ -16,9 +18,23 @@ export type ResumeProps = {
 export const FormContainer = ({ gridarea }: ResumeProps) => {
     const { register, handleSubmit } = useForm()
     const [data, setData] = useState()
-    useEffect(() => {
-        console.log(data)
-    }, [data])
+    const router = useRouter()
+
+    const invoiceData = useInvoice()
+    const [loading, setLoading] = useState(false)
+
+    function makePayment(data: any) {
+        setLoading(true)
+        setTimeout(() => (
+            invoiceData?.addPaymentData(data),
+            invoiceData.paymentStatus === 'processing' &&
+            router.push('./pagamento'),
+            setLoading(false)
+        ), 800)
+
+
+    }
+
     return (
         <div className={styles.form_container} style={{ gridArea: gridarea }} >
             <h2><CreditCard /> Ödeme </h2>
@@ -32,7 +48,8 @@ export const FormContainer = ({ gridarea }: ResumeProps) => {
                     <Input {...register("data_vencimento")} mask='mm/yy' replacement={{ m: /\d/, y: /\d/ }} placeholder='Data' label='Data de Expiração' />
                 </span>
                 <br />
-                <Button text='Pagar' onClick={handleSubmit((data) => setData(data))} />
+                <Button text='Efetuar pagamento' onClick={handleSubmit((data) => {setData(data), makePayment(data)})} />
+                <Button text='Gerar nova fatura' onClick={() => invoiceData.createNewInvoice()} />
             </form>
 
 

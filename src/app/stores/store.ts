@@ -20,6 +20,7 @@ type InvoiceState = {
     addPaymentData: (payload: PaymentData) => void,
     addName: (payload: string) => void
     paymentData?: PaymentData
+    paymentStatus: 'pending' | 'processing' | 'completed'
     invoiceData?: InvoiceData
     name: string | undefined
 }
@@ -31,12 +32,14 @@ export const useInvoice = create<InvoiceState>()(
             name: undefined,
             invoiceData: undefined,
             paymentData: undefined,
+            paymentStatus: 'pending',
 
             addName: (payload) => set(() => ({ name: payload })),
 
             addPaymentData: (payload) =>
                 set(() => ({
-                    paymentData: payload
+                    paymentData: payload,
+                    paymentStatus: 'processing'
                 })),
 
             createNewInvoice: () =>
