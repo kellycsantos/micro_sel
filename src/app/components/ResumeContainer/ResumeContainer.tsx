@@ -12,12 +12,11 @@ export type ListItems = {
 }
 
 export type ResumeProps = {
-    listItems: ListItems,
     gridarea?: string
 }
 
-export const ResumeContainer = ({ listItems, gridarea }: ResumeProps) => {
-    const use = useResume({ listItems })
+export const ResumeContainer = ( {gridarea}: ResumeProps) => {
+    const state = useResume()
     return (
         <div className={styles.resume_container} style={{ gridArea: gridarea }} >
             <h2>Ödeme Özeti</h2>
@@ -25,19 +24,19 @@ export const ResumeContainer = ({ listItems, gridarea }: ResumeProps) => {
                 <ul>
                     <li>
                         <p>Fatura n </p>
-                        <p>{listItems?.idFatura}</p>
+                        <p>{state?.idInvoice}</p>
                     </li>
                     <li>
                         <p>Value</p>
-                        <p>{listItems?.value}</p>
+                        <p>R$ {state.invoiceValue}</p>
                     </li>
                     <li>
                         <p>Discount</p>
-                        <p>{use?.discountValue}%</p>
+                        <p>{state?.formattDiscount}%</p>
                     </li>
                     <li>
                         <p>Total</p>
-                        <p>R$ {use?.valueWithDiscount}</p>
+                        <p>R$ {state?.valueWithDiscount}</p>
                     </li>
                 </ul>
             </div>
@@ -45,7 +44,7 @@ export const ResumeContainer = ({ listItems, gridarea }: ResumeProps) => {
             <footer className={styles.total_container}>
                 <span className={styles.total}>
                     <p>Ödenecek Tutar</p>
-                    <p>$ {use?.valueWithDiscount}</p>
+                    <p>$ {state?.valueWithDiscount}</p>
                 </span>
                 <span>
                     <FileText size={48} />

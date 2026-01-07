@@ -1,21 +1,28 @@
 'use client'
 
-import { ResumeProps } from "../ResumeContainer";
-import { convertPercentValue } from "@/app/utils";
+import { convertPercentValue, convertMoney } from "@/app/utils";
+import { useInvoice } from "@/app/stores/store";
 
 
-export function useResume({ listItems }: ResumeProps) {
+export function useResume() {
+    const invoiceState = useInvoice()
+    const state = invoiceState.invoiceData
+    
+    const idInvoice = state?.idInvoice
+    const value = state?.value || 0
+    const formattDiscount = convertPercentValue(Number(state?.discount) || 0 )
 
-    const value = listItems.value
-    const discountValue = convertPercentValue(listItems.discount)
-    const calcvalueWithDiscount = () => {
-        return (value - (value * listItems.discount)).toFixed(2)
+    const calc_valueWithDiscount = () => {
+        return (value - (value * Number(state?.discount))).toFixed(2)
     }
-    const valueWithDiscount = calcvalueWithDiscount()
-
+    const valueWithDiscount = convertMoney(calc_valueWithDiscount(), 'de-DE')
+    const invoiceValue = convertMoney(value)
 
     return {
-        discountValue,
+
+        formattDiscount,
         valueWithDiscount,
+        invoiceValue,
+        idInvoice
     }
 }

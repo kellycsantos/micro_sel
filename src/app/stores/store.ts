@@ -1,23 +1,57 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type UserState = {
-    user: string | null;
-    age: number,
-    addUser: (user: string) => void;
-    removeUser: () => void;
-};
+type PaymentData = {
+    cardholderName: string,
+    creditCard: number,
+    ccv: number,
+    expirationDate: string
+}
 
-export const useUser = create<UserState>()(
-persist(
-    (set) => ({
-        user: null,
-        age: 26,
-        addUser: (payload: string) => set({ user: payload }),
-        removeUser: () => set(() => ({ user: null }))
-    }),
-    {
-        name: 'user-storage'
-    }
-)
+type InvoiceData = {
+    idInvoice: number,
+    value: number,
+    discount: string | 0,
+}
+
+type InvoiceState = {
+
+    createNewInvoice: () => void,
+    addPaymentData: (payload: PaymentData) => void,
+    addName: (payload: string) => void
+    paymentData?: PaymentData
+    paymentStatus: 'pending' | 'processing' | 'completed'
+    invoiceData?: InvoiceData
+    name: string | undefined
+}
+
+
+export const useInvoice = create<InvoiceState>()(
+    persist(
+        (set) => ({
+            name: undefined,
+            invoiceData: undefined,
+            paymentData: undefined,
+            paymentStatus: 'pending',
+
+            addName: (payload) => set(() => ({ name: payload })),
+
+            addPaymentData: (payload) =>
+                set(() => ({
+                    paymentData: payload,
+                    paymentStatus: 'processing'
+                })),
+
+            createNewInvoice: () =>
+                set(() => ({
+                    invoiceData: {
+                        idInvoice: Math.floor((Math.random() * 100000000)),
+                        value: Math.floor((Math.random() * 1000)),
+                        discount: (Math.random() * 1).toFixed(2),
+                    }
+                }))
+        }),
+
+        { name: 'invoice-storage' }
+    )
 )

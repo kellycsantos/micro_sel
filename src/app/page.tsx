@@ -24,7 +24,7 @@ export default function Home() {
         <Container classname="step1">
         <h2 style={{gridArea: "title"}}>Micro</h2>
         <FormContainer gridarea="form" />
-        <ResumeContainer listItems={mockData} gridarea="resume"/>
+        <ResumeContainer gridarea="resume"/>
         </Container>
       </main>
     </div>
