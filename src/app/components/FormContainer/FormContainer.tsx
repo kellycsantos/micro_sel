@@ -25,12 +25,26 @@ export const FormContainer = ({ gridarea }: ResumeProps) => {
 
     function makePayment(data: any) {
         setLoading(true)
-        setTimeout(() => (
-            invoiceData?.addPaymentData(data),
-            invoiceData.paymentStatus === 'processing' &&
-            router.push('./pagamento'),
-            setLoading(false)
-        ), 800)
+        console.log('njxnjsnjxns cnsjncjs')
+        let processData;
+        if(processData) {
+            return clearTimeout(processData)
+        }
+        processData = () =>
+            setTimeout(() => (
+                invoiceData?.addPaymentData(data),
+                invoiceData.paymentStatus === 'processing' &&
+                router.push('./pagamento'),
+                setLoading(false)
+           
+            ), 100)
+
+            processData()
+        
+      
+        
+
+
 
 
     }
