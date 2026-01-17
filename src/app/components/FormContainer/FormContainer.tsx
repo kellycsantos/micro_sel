@@ -2,7 +2,7 @@
 import styles from './form_container.module.scss'
 import { Input } from '../Input/Input'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { Button } from '../Button'
