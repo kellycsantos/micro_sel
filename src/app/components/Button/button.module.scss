@@ -8,6 +8,7 @@
     font-size: 17px;
     transition: linear .3s;
     cursor: pointer;
+    place-items: center;
 
     &:hover {
         transform: scale(.96);
@@ -31,7 +32,6 @@
 
     &.ghost {
         background: $gray-700;
-
     }
 
 
