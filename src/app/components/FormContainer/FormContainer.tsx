@@ -25,7 +25,6 @@ export const FormContainer = ({ gridarea }: ResumeProps) => {
 
     function makePayment(data: any) {
         setLoading(true)
-        console.log('njxnjsnjxns cnsjncjs')
         let processData;
         if(processData) {
             return clearTimeout(processData)
@@ -33,20 +32,12 @@ export const FormContainer = ({ gridarea }: ResumeProps) => {
         processData = () =>
             setTimeout(() => (
                 invoiceData?.addPaymentData(data),
-                invoiceData.paymentStatus === 'processing' &&
                 router.push('./pagamento'),
                 setLoading(false)
            
-            ), 100)
+            ), 500)
 
             processData()
-        
-      
-        
-
-
-
-
     }
 
     return (
@@ -62,8 +53,8 @@ export const FormContainer = ({ gridarea }: ResumeProps) => {
                     <Input {...register("data_vencimento")} mask='mm/yy' replacement={{ m: /\d/, y: /\d/ }} placeholder='Data' label='Data de Expiração' />
                 </span>
                 <br />
-                <Button text='Efetuar pagamento' onClick={handleSubmit((data) => {setData(data), makePayment(data)})} />
-                <Button text='Gerar nova fatura' onClick={() => invoiceData.createNewInvoice()} />
+                <Button text='Efetuar pagamento' isLoading={loading} onClick={handleSubmit((data) => {setData(data), makePayment(data)})} />
+                <Button text='Gerar nova fatura' onClick={() => invoiceData.createNewInvoice()} variant='ghost'/>
             </form>
 
 
