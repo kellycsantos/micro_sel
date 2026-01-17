@@ -33,20 +33,12 @@ export const FormContainer = ({ gridarea }: ResumeProps) => {
         processData = () =>
             setTimeout(() => (
                 invoiceData?.addPaymentData(data),
-                invoiceData.paymentStatus === 'processing' &&
                 router.push('./pagamento'),
                 setLoading(false)
            
-            ), 100)
+            ), 500)
 
             processData()
-        
-      
-        
-
-
-
-
     }
 
     return (
