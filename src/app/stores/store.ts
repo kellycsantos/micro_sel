@@ -30,7 +30,7 @@ type InvoiceState = {
 
 export const useInvoice = create<InvoiceState>()(
     persist(
-        (set) => ({
+        (set, get) => ({
             name: undefined,
             invoiceData: undefined,
             paymentData: undefined,
@@ -46,12 +46,21 @@ export const useInvoice = create<InvoiceState>()(
                     loading: true
                 })),
 
-            finishPayment: () =>
-                set(() => ({
-                    paymentStatus : 'completed',
-                    loading: false
-                })),   
 
+            finishPayment: () => {
+                set(() => ({
+                    paymentStatus: 'completed',
+                    loading: false,
+                }))
+
+                setTimeout(() => {
+                    set(() => ({
+                        paymentStatus: 'pending',
+                        loading: false,
+                    }))
+                    get().createNewInvoice()
+                }, 1190)
+            },
             createNewInvoice: () =>
                 set(() => ({
                     invoiceData: {
@@ -59,7 +68,8 @@ export const useInvoice = create<InvoiceState>()(
                         value: Math.floor((Math.random() * 1000)),
                         discount: (Math.random() * 1).toFixed(2),
                     }
-                }))
+                })),
+
         }),
 
         { name: 'invoice-storage' }
