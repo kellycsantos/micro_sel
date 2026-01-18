@@ -3,13 +3,12 @@
 .form_container {
     max-width: 415px;
     width: 30dvw;
-
     h2 {
         margin-block: 28px;
         display: flex;
         align-items: center;
         gap: 16px;
-
+        
         svg {
             width: 40px;
             height: 40px;
@@ -18,7 +17,7 @@
             border-radius: 14px;
             color: $white;
         }
-
+        
     }
 
     .introduction {
