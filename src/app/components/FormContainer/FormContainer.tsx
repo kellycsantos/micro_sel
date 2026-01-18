@@ -84,7 +84,7 @@ export const FormContainer = ({ gridarea }: ResumeProps) => {
                 </span>
 
                 <Button text='Efetuar pagamento' isLoading={loading} onClick={handleSubmit(makePayment)} />
-                <Button text='Gerar nova fatura' onClick={() => invoiceData.createNewInvoice()} variant='ghost' />
+                <Button type="button" text='Gerar nova fatura' onClick={() => invoiceData.createNewInvoice()} variant='ghost' />
             </form>
 
 
