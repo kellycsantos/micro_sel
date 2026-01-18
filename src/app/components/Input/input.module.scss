@@ -38,4 +38,10 @@
             background: $orange-200;
         }
     }
+
+    small{
+        color: $primary;
+        margin-block: -24px 12px;
+        display: block;
+    }
 }
