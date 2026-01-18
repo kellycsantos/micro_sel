@@ -1,0 +1,20 @@
+name: Block direct merge to main
+
+on:
+  pull_request: 
+   branches:
+    - main 
+jobs:
+  check-source-branch:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Check source branch
+      run: |
+        if [[ "${{ github.base_ref }}" != "main" ]]; then
+            echo "PR não é para main, ignorando"
+            exit 0
+          fi
+        if [[ "${{ github.head_ref }}" != "develop" ]]; then
+         exit 1
+        fi
+       

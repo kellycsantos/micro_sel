@@ -1,0 +1,39 @@
+@use '../../_variables-colors' as *;
+
+
+.spinner {
+    height: var(--size);
+    width: var(--size);
+    border: 4px solid $primary;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+
+    img {
+        display: none;
+    }
+
+    &.finished {
+        animation: '';
+        border-bottom-color: $primary ;
+        place-items: center;
+        display: flex;
+
+
+        img {
+            position: relative;
+            display: block;
+            left: 24%;
+            top: -8%;
+            width: 100%;
+        }
+
+    }
+}
+
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
