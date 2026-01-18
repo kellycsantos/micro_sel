@@ -1,8 +1,9 @@
+import React from 'react'
 import { Spinner } from '../Spinner/Spinner'
 import styles from './button.module.scss'
 
 
-type Button = {
+type Button = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     text?: string,
     onClick?: () => void,
     variant?: 'primary' | 'ghost' | 'loading',
@@ -18,9 +19,9 @@ const getVariant = (variant: string | undefined, loading: boolean): string => {
 }
 
 
-export const Button = ({ text, onClick, variant, disabled, isLoading = false }: Button) => {
+export const Button = ({text, onClick, variant, disabled, isLoading = false, ...rest }: Button) => {
     return (
-        <button data-testid="main_button" className={`${styles.button} ${styles[getVariant(variant, isLoading)]}`} onClick={onClick} disabled={disabled ?? false}>
+        <button data-testid="main_button" {...rest} className={`${styles.button} ${styles[getVariant(variant, isLoading)]}`} onClick={onClick} disabled={disabled ?? false}>
             {isLoading ?
                 <Spinner size={20} /> : <> {text ?? 'click'}</>
             }
