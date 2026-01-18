@@ -17,6 +17,13 @@ export type ResumeProps = {
     gridarea?: string
 }
 
+type TFormData = {
+  holdername: string
+  credit_card: string
+  ccv: string
+  due_date: string
+}
+
 const formSchema = z.object({
     holdername: z.string().transform((name) => name.trim()).refine((name) => name.length >= 10, 'O nome deve conter 10 caracteres ou mais'),
     credit_card: z.string()
@@ -48,7 +55,7 @@ type FormData = z.infer<typeof formSchema>
 
 export const FormContainer = ({ gridarea }: ResumeProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({ resolver: zodResolver(formSchema) })
-    const [data, setData] = useState()
+    const [data, setData] = useState<FormData>()
     const router = useRouter()
 
     const invoiceData = useInvoice()
