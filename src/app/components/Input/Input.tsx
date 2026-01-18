@@ -9,19 +9,23 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     replacement?: Replacement,
     tooltip?: string
     onChange?: (e: any) => void,
+    error?: string
 
 }
-export const Input = ({ label, mask, replacement, onChange, tooltip, ...rest }: InputProps) => {
+export const Input = ({ label, mask, replacement, onChange, tooltip, error, ...rest }: InputProps) => {
     return (
 
         <label className={styles.label}>
             <p> {label} {tooltip && <Tooltip content={tooltip} />}</p>
-         {
-            mask ? 
-            <InputMask {...rest} mask={mask} replacement={replacement} separate onChange={onChange} className={styles.input} /> :
-            <input {...rest} className={styles.input}/>
-         }
+            {
+                mask ?
+                    <InputMask {...rest} mask={mask} replacement={replacement} separate onChange={onChange} className={styles.input} /> :
+                    <input {...rest} className={styles.input} />
+            }
+            {
+                error &&
+                <small>{error}</small>
+            }
         </label>
-
     )
 }
